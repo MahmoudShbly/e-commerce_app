@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class Styles {
-  static const TextStyle textStyle42 = TextStyle(
-    fontSize: 42,
+  static const TextStyle textStyle38 = TextStyle(
+    fontSize: 38,
     fontFamily: 'Metropolis',
     fontWeight: FontWeight.w700
   );

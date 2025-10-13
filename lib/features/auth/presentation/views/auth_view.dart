@@ -6,10 +6,8 @@ class AuthView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: AuthViewBody(),
-      ),
+    return Scaffold(
+      body: AuthViewBody(),
     );
   }
 }

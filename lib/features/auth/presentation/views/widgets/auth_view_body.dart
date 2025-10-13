@@ -14,6 +14,8 @@ class AuthViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
+        AuthCubit cubit = context.read<AuthCubit>();
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
@@ -25,62 +27,88 @@ class AuthViewBody extends StatelessWidget {
                     children: <Widget>[
                       SizedBox(height: MediaQuery.of(context).size.height * .1),
 
-                      Text('Login', style: Styles.textStyle42),
+                      Text(
+                        cubit.isLogin ? 'Login' : 'Signup',
+                        style: Styles.textStyle38,
+                      ),
                       SizedBox(height: MediaQuery.of(context).size.height * .1),
+
+                      /// ---- Name (only in signup) ----
+                      if (!cubit.isLogin)
+                        CustomTextFormField(
+                          lable: 'Name',
+                          type: TextInputType.name,
+                        ),
+                      if (!cubit.isLogin) const SizedBox(height: 10),
+                     const SizedBox(height: 10),
                       CustomTextFormField(
                         lable: 'Email',
                         type: TextInputType.emailAddress,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       CustomTextFormField(
                         lable: 'Password',
-                        type: TextInputType.emailAddress,
-                        isPassword: !context.read<AuthCubit>().isPasswordShow,
+                        type: TextInputType.visiblePassword,
+                        isPassword: !cubit.isPasswordShow,
                         suffixIcon: IconButton(
                           icon: Icon(
-                            context.read<AuthCubit>().isPasswordShow
-                                ? Icons.visibility_off
-                                : Icons.visibility,
+                            cubit.isPasswordShow
+                                ? FontAwesomeIcons.solidEyeSlash
+                                : FontAwesomeIcons.solidEye,
                           ),
                           onPressed: () {
-                            context.read<AuthCubit>().changePasswordVisibility();
+                            cubit.changePasswordVisibility();
                           },
                         ),
                       ),
-                      SizedBox(height: 20),
+                     const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Text(
-                            'Forget your password?',
+                            cubit.isLogin
+                                ? 'Forget your password?'
+                                : 'Already have an account?',
                             style: Styles.textStyle14,
                           ),
                           IconButton(
                             icon: Icon(
-                              FontAwesomeIcons.arrowRightLong,
+                               FontAwesomeIcons.arrowRightLong,
                               size: 18,
                               color: Theme.of(context).primaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              cubit.changeAuthFormType();
+                            },
                           ),
                         ],
                       ),
-                      SizedBox(height: 32),
-                      CustomButton(title: 'LOGIN'),
+                     const SizedBox(height: 32),
+                      CustomButton(
+                        title: cubit.isLogin
+                            ? 'LOGIN'
+                            : 'SIGNUP',
+                      ),
                     ],
                   ),
                 ),
               ),
-              Center(child: Text('Or login with social account')),
-              SizedBox(height: 12),
+              Center(
+                child: Text (
+                  cubit.isLogin
+                      ? 'Or login with social account'
+                      : 'Or sign up with social account',
+                ),
+              ),
+             const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(MyAssets.facebook),
                   Image.asset(MyAssets.google),
+                  Image.asset(MyAssets.facebook),
                 ],
               ),
-              SizedBox(height: 18),
+             const SizedBox(height:40),
             ],
           ),
         );
