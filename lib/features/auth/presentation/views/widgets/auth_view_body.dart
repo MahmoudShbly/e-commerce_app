@@ -1,20 +1,23 @@
-import 'package:ecommerce_app/core/utils/my_assets.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button.dart';
 import 'package:ecommerce_app/core/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:ecommerce_app/features/auth/presentation/views/widgets/continue_with_social.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthViewBody extends StatelessWidget {
-  const AuthViewBody({super.key});
-
+   AuthViewBody({super.key});
+   final GlobalKey<FormState> formKey=GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
-        AuthCubit cubit = context.read<AuthCubit>();
+        AuthCubit cubit = context.watch<AuthCubit>();
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -22,92 +25,93 @@ class AuthViewBody extends StatelessWidget {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: MediaQuery.of(context).size.height * .1),
-
-                      Text(
-                        cubit.isLogin ? 'Login' : 'Signup',
-                        style: Styles.textStyle38,
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * .1),
-
-                      /// ---- Name (only in signup) ----
-                      if (!cubit.isLogin)
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: MediaQuery.of(context).size.height * .1),
+                    
+                        Text(
+                          cubit.isLogin ? 'Login' : 'Signup',
+                          style: Styles.textStyle38,
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * .1),
+                    
+                        /// ---- Name (only in signup) ----
+                        if (!cubit.isLogin)
+                          CustomTextFormField(
+                            controller: nameController,
+                            lable: 'Name',
+                            type: TextInputType.name,
+                          ),
+                        if (!cubit.isLogin) const SizedBox(height: 10),
                         CustomTextFormField(
-                          lable: 'Name',
-                          type: TextInputType.name,
+                          controller: emailController,
+                          lable: 'Email',
+                          type: TextInputType.emailAddress,
                         ),
-                      if (!cubit.isLogin) const SizedBox(height: 10),
-                     const SizedBox(height: 10),
-                      CustomTextFormField(
-                        lable: 'Email',
-                        type: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 10),
-                      CustomTextFormField(
-                        lable: 'Password',
-                        type: TextInputType.visiblePassword,
-                        isPassword: !cubit.isPasswordShow,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            cubit.isPasswordShow
-                                ? FontAwesomeIcons.solidEyeSlash
-                                : FontAwesomeIcons.solidEye,
-                          ),
-                          onPressed: () {
-                            cubit.changePasswordVisibility();
-                          },
-                        ),
-                      ),
-                     const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            cubit.isLogin
-                                ? 'Forget your password?'
-                                : 'Already have an account?',
-                            style: Styles.textStyle14,
-                          ),
-                          IconButton(
+                        const SizedBox(height: 10),
+                        CustomTextFormField(
+                          controller: passswordController,
+                          lable: 'Password',
+                          type: TextInputType.visiblePassword,
+                          isPassword: !cubit.isPasswordShow,
+                          suffixIcon: IconButton(
                             icon: Icon(
-                               FontAwesomeIcons.arrowRightLong,
-                              size: 18,
-                              color: Theme.of(context).primaryColor,
+                              cubit.isPasswordShow
+                                  ? FontAwesomeIcons.solidEyeSlash
+                                  : FontAwesomeIcons.solidEye,
                             ),
                             onPressed: () {
-                              cubit.changeAuthFormType();
+                              cubit.changePasswordVisibility();
                             },
                           ),
-                        ],
-                      ),
-                     const SizedBox(height: 32),
-                      CustomButton(
-                        title: cubit.isLogin
-                            ? 'LOGIN'
-                            : 'SIGNUP',
-                      ),
-                    ],
+                        ),
+                       const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              cubit.isLogin
+                                  ? 'Forget your password?'
+                                  : 'Already have an account?',
+                              style: Styles.textStyle14,
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                 FontAwesomeIcons.arrowRightLong,
+                                size: 18,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              onPressed: () {
+                                cubit.changeAuthFormType();
+                                nameController.clear();
+                                emailController.clear();
+                                passswordController.clear();
+                                formKey.currentState!.reset();
+                              },
+                            ),
+                          ],
+                        ),
+                       const SizedBox(height: 32),
+                        CustomButton(
+                          title: cubit.isLogin
+                              ? 'LOGIN'
+                              : 'SIGNUP',
+                              onTap: () {
+                                if(formKey.currentState!.validate()){
+                                  print('accept');
+                                }
+                              },
+                        ),
+                        
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Center(
-                child: Text (
-                  cubit.isLogin
-                      ? 'Or login with social account'
-                      : 'Or sign up with social account',
-                ),
-              ),
-             const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset(MyAssets.google),
-                  Image.asset(MyAssets.facebook),
-                ],
-              ),
+              ContinueWithSocialSection(isLogin: cubit.isLogin),
              const SizedBox(height:40),
             ],
           ),

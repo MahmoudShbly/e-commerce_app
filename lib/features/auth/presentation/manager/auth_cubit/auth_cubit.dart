@@ -10,12 +10,12 @@ class AuthCubit extends Cubit<AuthState> {
     isPasswordShow = !isPasswordShow;
     emit(ChangePasswordVisibilityState());
 }
-  AuthFormState authType = AuthFormState.login;
+  AuthFormType authType = AuthFormType.login;
   void changeAuthFormType(){
-    if(authType==AuthFormState.login){
-      authType=AuthFormState.signup;
-    }else {authType=AuthFormState.login;}
+    if(authType==AuthFormType.login){
+      authType=AuthFormType.signup;
+    }else {authType=AuthFormType.login;}
     emit(ChangeAuthFormTypeState());
   }
-  bool get isLogin =>authType==AuthFormState.login;
+  bool get isLogin =>authType==AuthFormType.login;
 }

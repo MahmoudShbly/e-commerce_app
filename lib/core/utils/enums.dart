@@ -1,4 +1,4 @@
-enum AuthFormState {
+enum AuthFormType {
   login,
   signup
 }

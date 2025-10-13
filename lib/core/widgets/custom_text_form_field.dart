@@ -4,20 +4,28 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.lable,
-    this.validator,
+
     required this.type,
-    this.isPassword = false,  this.suffixIcon,
+    this.isPassword = false,
+    this.suffixIcon,
+    required this.controller,
   });
   final String lable;
-  final String? Function(String?)? validator;
+ 
   final TextInputType type;
   final bool isPassword;
   final IconButton? suffixIcon;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
-      validator: validator,
+      controller: controller,
+      validator: (value){
+        if(value==null || value.isEmpty){
+          return '$lable is required';
+        }
+        else return null;
+      },
       obscureText: isPassword,
       keyboardType: type,
       decoration: InputDecoration(
