@@ -22,6 +22,7 @@ class ContinueWithSocialSection extends StatelessWidget {
                   Image.asset(MyAssets.facebook),
                 ],
               ),
+              
       ],
     );
   }
