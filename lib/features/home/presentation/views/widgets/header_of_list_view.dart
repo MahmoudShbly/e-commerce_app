@@ -20,13 +20,13 @@ class HeaderOfListView extends StatelessWidget {
                   Spacer(),
                   Text(
                     'See All',
-                    style: Styles.textStyle14.copyWith(color: Colors.blue,fontSize: 12),
+                    style: Styles.textStyle12.copyWith(color: Colors.blue),
                   ),
                 ],
               ),
               Text(
                 discription,
-                style: Styles.textStyle14.copyWith(color: Colors.grey),
+                style: Styles.textStyle12.copyWith(color: Colors.grey),
               ),
             ],
           ),
