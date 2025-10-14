@@ -23,7 +23,6 @@ class AuthViewBody extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         AuthCubit cubit = context.watch<AuthCubit>();
-
         return Padding(
           padding: const EdgeInsets.only(bottom: 40.0, left: 16.0, right: 16.0),
           child: Expanded(
@@ -34,20 +33,17 @@ class AuthViewBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(height: MediaQuery.of(context).size.height * .1),
-
                     Text(
                       cubit.isLogin ? 'Login' : 'Signup',
                       style: Styles.textStyle38,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * .1),
-
                     FieldsSection(
                       formKey: formKey,
                       nameController: nameController,
                       emailController: emailController,
                       passswordController: passswordController,
                     ),
-
                     const SizedBox(height: 32),
                     CustomButton(
                       title: cubit.isLogin ? 'LOGIN' : 'SIGNUP',
