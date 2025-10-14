@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/utils/app_router.dart';
 import 'package:ecommerce_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
-import 'package:ecommerce_app/features/main/presentation/manager/navigation_cubit/navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
          BlocProvider(create: (context) => AuthCubit()),
-         BlocProvider(create: (context) => NavigationCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -6,11 +6,11 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-      path: mainView,
+      path: '/',
       builder: (context, state) =>const AuthView(),
      ),
       GoRoute(
-      path: '/',
+      path: mainView,
       builder: (context, state) =>const MainView(),
      ),
     ],

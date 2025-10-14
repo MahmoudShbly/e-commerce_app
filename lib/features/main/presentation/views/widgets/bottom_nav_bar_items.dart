@@ -1,23 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-part 'navigation_state.dart';
-
-class NavigationCubit extends Cubit<NavigationState> {
-  NavigationCubit():super(NavigationInitial()); 
-  List<Widget> screens = [
-   
-    Container(color: Colors.red),
-    Container(color: Colors.green), 
-    Container(color: Colors.blue), 
-    Container(color: Colors.yellow), 
-  ];
-   List<PersistentBottomNavBarItem> navBarItems = [
+List<PersistentBottomNavBarItem> navBarItems = [
       PersistentBottomNavBarItem( 
         icon: Icon(Icons.home),
         title: "Home",
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: const Color(0xffDB3022),
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
@@ -39,6 +27,3 @@ class NavigationCubit extends Cubit<NavigationState> {
         inactiveColorPrimary: Colors.grey,
       ),
     ];
-
-
-}

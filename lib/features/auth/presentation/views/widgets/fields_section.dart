@@ -1,9 +1,11 @@
+import 'package:ecommerce_app/core/utils/app_router.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class FieldsSection extends StatelessWidget {
   FieldsSection({
@@ -52,7 +54,7 @@ class FieldsSection extends StatelessWidget {
               focusNode: passwordFocusNode,
               nextAction: () {
                 if (formKey.currentState!.validate()) {
-                  debugPrint('accept');
+                  GoRouter.of(context).go(AppRouter.mainView);
                 }
               },
 
@@ -87,7 +89,7 @@ class FieldsSection extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   onPressed: () {
-                    
+                    // forget password functionality
                   },
                 ),
               ],
