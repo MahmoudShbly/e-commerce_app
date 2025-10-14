@@ -13,7 +13,7 @@ class TopBannerSection extends StatelessWidget {
           alignment: AlignmentDirectional.bottomStart,
           
           children: <Widget>[
-            Image.network(MyAssets.cloths,
+            Image.network(MyAssets.tepmClothsImage1,
             width: double.infinity,
             height: size.height*.25,
             fit: BoxFit.cover,
