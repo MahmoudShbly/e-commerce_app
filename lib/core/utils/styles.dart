@@ -22,4 +22,9 @@ class Styles {
     fontFamily: 'Metropolis',
     fontWeight: FontWeight.w500
   );
+  static const TextStyle textStyle16 = TextStyle(
+    fontSize: 16,
+    fontFamily: 'Metropolis',
+    fontWeight: FontWeight.w500
+  );
 }

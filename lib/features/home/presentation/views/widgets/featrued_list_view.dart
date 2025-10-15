@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/home/presentation/views/widgets/custom_product_card.dart';
+import 'package:ecommerce_app/features/home/presentation/views/widgets/highlighted_product_card.dart';
 import 'package:flutter/material.dart';
 
 class FeatruedListView extends StatelessWidget {
@@ -13,7 +13,7 @@ class FeatruedListView extends StatelessWidget {
             itemCount: 10,
             itemBuilder: (context, index) {
               return const Padding(
-                padding: EdgeInsets.only(left: 8.0),
+                padding: EdgeInsets.only(left: 24.0),
                 child: HighlightedProductCard(),
               );
             },
