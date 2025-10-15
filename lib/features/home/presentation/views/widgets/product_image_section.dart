@@ -1,10 +1,9 @@
-import 'package:ecommerce_app/core/utils/my_assets.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSection extends StatelessWidget {
-  const ProductImageSection({super.key});
-
+  const ProductImageSection({super.key, required this.imageUrl});
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,25 +13,28 @@ class ProductImageSection extends StatelessWidget {
           height: 150,
           width: 150,
 
-          child: Image.network(MyAssets.tepmClothsImage2, fit: BoxFit.fill),
+          child: Image.network(imageUrl, fit: BoxFit.fitHeight),
         ),
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.4),
-                blurRadius: 4,
-                offset: Offset(-2, 3),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.4),
+                  blurRadius: 4,
+                  offset: Offset(-2, 3),
+                ),
+              ],
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).primaryColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Text(
+                '-20% ',
+                style: Styles.textStyle12.copyWith(color: Colors.white),
               ),
-            ],
-            borderRadius: BorderRadius.circular(8),
-            color: Theme.of(context).primaryColor,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Text(
-              '-20% ',
-              style: Styles.textStyle12.copyWith(color: Colors.white),
             ),
           ),
         ),
