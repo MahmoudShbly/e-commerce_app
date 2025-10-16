@@ -1,4 +1,6 @@
+
 import 'package:ecommerce_app/core/utils/app_router.dart';
+import 'package:ecommerce_app/core/utils/helper_function.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button.dart';
 import 'package:ecommerce_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -22,7 +24,22 @@ class AuthViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthFailureState) {
+          showSnackBar(context, state.errorMassage, Colors.red);
+        }
+        if (state is AuthLoginSuccessState) {
+          showSnackBar(context, 'Login successfully', Colors.green);
+          GoRouter.of(context).go(AppRouter.mainView);
+        }
+        
+        if (state is AuthSignUpSuccessState) {
+          showSnackBar(context, 'Sign up successfully', Colors.green);
+          GoRouter.of(context).go(AppRouter.mainView);
+        }
+        
+      },
       builder: (context, state) {
         AuthCubit cubit = context.watch<AuthCubit>();
         return Padding(
@@ -36,12 +53,16 @@ class AuthViewBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(height: MediaQuery.of(context).size.height * .1),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .1,
+                        ),
                         Text(
                           cubit.isLogin ? 'Login' : 'Signup',
                           style: Styles.textStyle38,
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height * .1),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .1,
+                        ),
                         FieldsSection(
                           formKey: formKey,
                           nameController: nameController,
@@ -51,9 +72,11 @@ class AuthViewBody extends StatelessWidget {
                         const SizedBox(height: 32),
                         CustomButton(
                           title: cubit.isLogin ? 'LOGIN' : 'SIGNUP',
-                          onTap: () {
+                          onTap: ()async {
                             if (formKey.currentState!.validate()) {
-                              GoRouter.of(context).go(AppRouter.mainView);
+                              FocusManager.instance.primaryFocus?.unfocus();
+                             await cubit.submit(emailController.text, passswordController.text);
+                              
                             }
                           },
                         ),

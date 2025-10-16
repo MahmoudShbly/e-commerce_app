@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
       textInputAction:isPassword?TextInputAction.done: TextInputAction.next,
       focusNode: focusNode,
       controller: controller,
-      validator: (value){
+      validator:lable == 'Name'?null: (value){
         if(value==null || value.isEmpty){
           return '$lable is required';
         }

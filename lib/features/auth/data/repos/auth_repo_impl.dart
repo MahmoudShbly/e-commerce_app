@@ -8,7 +8,7 @@ class AuthRepoImpl implements AuthRepo {
   Stream<User?> authStateChanges() =>_firebaseAuth.authStateChanges();
 
   @override
-  User? get currntUser => _firebaseAuth.currentUser;
+  User? get currentUser => _firebaseAuth.currentUser;
 
   @override
   Future<User?> loginWithEmailAndPassword(String email, String password) async {
@@ -22,6 +22,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<User?> signUpWithEmailAndPassword(String email, String password)async {
     UserCredential userAuth = await _firebaseAuth.createUserWithEmailAndPassword(
+      
       email: email,
       password: password,
     );
