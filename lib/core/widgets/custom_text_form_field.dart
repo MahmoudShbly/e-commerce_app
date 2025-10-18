@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.lable,
+    required this.label,
     required this.focusNode,
     required this.nextAction,
     required this.type,
@@ -11,7 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     required this.controller,
   });
-  final String lable;
+  final String label;
   final FocusNode focusNode;
   final Function ()nextAction;
   final TextInputType type;
@@ -25,9 +25,9 @@ class CustomTextFormField extends StatelessWidget {
       textInputAction:isPassword?TextInputAction.done: TextInputAction.next,
       focusNode: focusNode,
       controller: controller,
-      validator: (value){
+      validator:label == 'Name'?null: (value){
         if(value==null || value.isEmpty){
-          return '$lable is required';
+          return '$label is required';
         }
         return null;
       },
@@ -36,7 +36,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(7)),
-        label: Text(lable),
+        label: Text(label),
       ),
     );
   }

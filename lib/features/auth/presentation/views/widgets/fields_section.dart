@@ -13,12 +13,12 @@ class FieldsSection extends StatelessWidget {
     required this.formKey,
     required this.nameController,
     required this.emailController,
-    required this.passswordController,
+    required this.passwordController,
   });
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
   final TextEditingController emailController;
-  final TextEditingController passswordController;
+  final TextEditingController passwordController;
   final FocusNode nameFocusNode = FocusNode();
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
@@ -36,7 +36,7 @@ class FieldsSection extends StatelessWidget {
                 focusNode: nameFocusNode,
                 nextAction: () =>
                     FocusScope.of(context).requestFocus(emailFocusNode),
-                lable: 'Name',
+                label: 'Name',
                 type: TextInputType.name,
               ),
             if (!cubit.isLogin) const SizedBox(height: 10),
@@ -45,12 +45,12 @@ class FieldsSection extends StatelessWidget {
               focusNode: emailFocusNode,
               nextAction: () =>
                   FocusScope.of(context).requestFocus(passwordFocusNode),
-              lable: 'Email',
+              label: 'Email',
               type: TextInputType.emailAddress,
             ),
             const SizedBox(height: 10),
             CustomTextFormField(
-              controller: passswordController,
+              controller: passwordController,
               focusNode: passwordFocusNode,
               nextAction: () {
                 if (formKey.currentState!.validate()) {
@@ -58,7 +58,7 @@ class FieldsSection extends StatelessWidget {
                 }
               },
 
-              lable: 'Password',
+              label: 'Password',
               type: TextInputType.visiblePassword,
               isPassword: !cubit.isPasswordShow,
               suffixIcon: IconButton(

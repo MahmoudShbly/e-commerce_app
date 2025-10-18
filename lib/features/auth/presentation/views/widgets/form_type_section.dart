@@ -11,13 +11,13 @@ class FormTypeSection extends StatelessWidget {
     required this.formKey,
     required this.nameController,
     required this.emailController,
-    required this.passswordController,
+    required this.passwordController,
   });
   final bool isLogin;
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
   final TextEditingController emailController;
-  final TextEditingController passswordController;
+  final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,11 +32,11 @@ class FormTypeSection extends StatelessWidget {
             context.read<AuthCubit>().changeAuthFormType();
             nameController.clear();
             emailController.clear();
-            passswordController.clear();
+            passwordController.clear();
             formKey.currentState?.reset();
           },
           child: Text(
-            isLogin ? 'Regist' : 'Login',
+            isLogin ? 'Register' : 'Login',
             style: Styles.textStyle14.copyWith(
               color: Theme.of(context).primaryColor,
             ),
