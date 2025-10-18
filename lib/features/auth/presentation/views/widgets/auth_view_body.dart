@@ -77,7 +77,9 @@ class _AuthViewBodyState extends State<AuthViewBody> {
       },
       builder: (context, state) {
         AuthCubit cubit = context.watch<AuthCubit>();
-        return Padding(
+        return state is AuthLoadingState? Center(
+          child: CircularProgressIndicator(),
+        ):Padding(
           padding: const EdgeInsets.only(bottom: 40.0, left: 16.0, right: 16.0),
           child: Column(
             children: [
@@ -103,6 +105,9 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                           nameController: _nameController,
                           emailController: _emailController,
                           passwordController: _passwordController,
+                          nameFocusNode: _nameFocusNode,
+                          emailFocusNode: _emailFocusNode,
+                          passwordFocusNode: _passwordFocusNode,
                         ),
                         const SizedBox(height: 32),
                         CustomButton(

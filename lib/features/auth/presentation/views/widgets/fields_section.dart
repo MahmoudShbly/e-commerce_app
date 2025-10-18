@@ -8,20 +8,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class FieldsSection extends StatelessWidget {
-  FieldsSection({
+  const FieldsSection({
     super.key,
     required this.formKey,
     required this.nameController,
     required this.emailController,
     required this.passwordController,
+    required this.nameFocusNode,
+    required this.emailFocusNode,
+    required this.passwordFocusNode,
   });
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final FocusNode nameFocusNode = FocusNode();
-  final FocusNode emailFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode nameFocusNode ;
+  final FocusNode emailFocusNode ;
+  final FocusNode passwordFocusNode ;
   @override
   Widget build(BuildContext context) {
     AuthCubit cubit = context.watch<AuthCubit>();
