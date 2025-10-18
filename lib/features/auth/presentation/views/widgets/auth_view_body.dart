@@ -11,15 +11,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class AuthViewBody extends StatelessWidget {
+class AuthViewBody extends StatefulWidget {
   AuthViewBody({super.key});
+
+  @override
+  State<AuthViewBody> createState() => _AuthViewBodyState();
+}
+
+class _AuthViewBodyState extends State<AuthViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passswordController = TextEditingController();
-  final FocusNode nameFocusNode = FocusNode();
-  final FocusNode emailFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
+
+  late final TextEditingController _nameController ;
+
+  late final TextEditingController _emailController ;
+
+  late final TextEditingController _passwordController ;
+
+ late  final FocusNode _nameFocusNode;
+
+  late final FocusNode _emailFocusNode;
+
+  late final FocusNode _passwordFocusNode;
+
+  @override
+  void initState() {
+    _nameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _nameFocusNode = FocusNode();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -65,9 +100,9 @@ class AuthViewBody extends StatelessWidget {
                         ),
                         FieldsSection(
                           formKey: formKey,
-                          nameController: nameController,
-                          emailController: emailController,
-                          passswordController: passswordController,
+                          nameController: _nameController,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
                         ),
                         const SizedBox(height: 32),
                         CustomButton(
@@ -75,7 +110,7 @@ class AuthViewBody extends StatelessWidget {
                           onTap: ()async {
                             if (formKey.currentState!.validate()) {
                               FocusManager.instance.primaryFocus?.unfocus();
-                             await cubit.submit(emailController.text, passswordController.text);
+                             await cubit.submit(_emailController.text, _passwordController.text);
                               
                             }
                           },
@@ -84,9 +119,9 @@ class AuthViewBody extends StatelessWidget {
                         FormTypeSection(
                           isLogin: cubit.isLogin,
                           formKey: formKey,
-                          nameController: nameController,
-                          emailController: emailController,
-                          passswordController: passswordController,
+                          nameController: _nameController,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
                         ),
                         SizedBox(
                           height: cubit.isLogin

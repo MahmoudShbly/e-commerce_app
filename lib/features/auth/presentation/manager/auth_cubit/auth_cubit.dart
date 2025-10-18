@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
-  final  _authRepoImpl=AuthRepoImpl();
+  AuthCubit(this._authRepoImpl) : super(AuthInitial());
+  final AuthRepoImpl  _authRepoImpl;
   bool isPasswordShow = false;
   void changePasswordVisibility() {
     isPasswordShow = !isPasswordShow;
