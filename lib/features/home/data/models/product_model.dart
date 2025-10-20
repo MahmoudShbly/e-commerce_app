@@ -18,6 +18,31 @@ class ProductModel {
   final double newPrice;
   final String imageUrl;
   final Rating rating;
+
+   Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'category': category,
+      'oldPrice': oldPrice,
+      'newPrice': newPrice,
+      'imageUrl': imageUrl,
+      'rating': rating.toMap(),
+    };
+  }
+
+   factory ProductModel.fromMap(Map<String, dynamic> map , String documentId) {
+    return ProductModel(
+      id: int.parse(documentId),
+      name: map['name'] ?? '',
+      category: map['category'] ?? '',
+      oldPrice: (map['oldPrice'] ?? 0).toDouble(),
+      newPrice: (map['newPrice'] ?? 0).toDouble(),
+      imageUrl: map['imageUrl'] ?? '',
+      rating: Rating.fromMap(map['rating']), 
+    );
+  }
 }
+
 
 

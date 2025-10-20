@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AuthViewBody extends StatefulWidget {
-  AuthViewBody({super.key});
+ const AuthViewBody({super.key});
 
   @override
   State<AuthViewBody> createState() => _AuthViewBodyState();
