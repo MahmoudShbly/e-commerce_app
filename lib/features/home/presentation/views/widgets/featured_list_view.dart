@@ -2,8 +2,8 @@ import 'package:ecommerce_app/features/home/data/models/product_model.dart';
 import 'package:ecommerce_app/features/home/presentation/views/widgets/highlighted_product_card.dart';
 import 'package:flutter/material.dart';
 
-class FeatruedListView extends StatelessWidget {
-  const FeatruedListView({super.key, required this.products});
+class FeaturedListView extends StatelessWidget {
+  const FeaturedListView({super.key, required this.products});
   final List<ProductModel> products;
   @override
   Widget build(BuildContext context) {

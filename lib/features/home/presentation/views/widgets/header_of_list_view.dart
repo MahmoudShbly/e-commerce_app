@@ -2,9 +2,9 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class HeaderOfListView extends StatelessWidget {
-  const HeaderOfListView({super.key, required this.title, required this.discription});
+  const HeaderOfListView({super.key, required this.title, required this.description});
   final String title;
-  final String discription;
+  final String description;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +25,7 @@ class HeaderOfListView extends StatelessWidget {
                 ],
               ),
               Text(
-                discription,
+                description,
                 style: Styles.textStyle14.copyWith(color: Colors.grey),
               ),
             ],

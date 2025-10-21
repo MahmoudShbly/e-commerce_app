@@ -22,10 +22,10 @@ class HighlightedProductCard extends StatelessWidget {
             const SizedBox(height: 10),
             ReviewRatingSection(rating: product.rating,),
             const SizedBox(height: 5),
-            NameCategorySection(category: product.category,name: product.name,),
+            NameCategorySection(category: product.category,name: product.title,),
             const SizedBox(height: 5),
 
-            PriceSection(newPrice: product.newPrice,oldPrice: product.oldPrice,),
+            PriceSection(newPrice: product.newPrice!,oldPrice: product.oldPrice,),
           ],
         ),
       ),

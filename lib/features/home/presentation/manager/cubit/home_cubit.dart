@@ -9,8 +9,8 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
   List<ProductModel> product = [
     ProductModel(
-      id: 1,
-      name: 'Blue T Shirt',
+      id: '1',
+      title: 'Blue T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -18,8 +18,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 3),
     ),
     ProductModel(
-      id: 3,
-      name: 'Over Size',
+      id: '3',
+      title: 'Over Size',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -27,8 +27,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 4,
-      name: 'Polo T Shirt',
+      id: '4',
+      title: 'Polo T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -36,8 +36,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 1,
-      name: 'Blue T Shirt',
+      id: '1',
+      title: 'Blue T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -45,8 +45,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 3,
-      name: 'Over Size',
+      id: '3',
+      title: 'Over Size',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -54,8 +54,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 4,
-      name: 'Polo T Shirt',
+      id: '4',
+      title: 'Polo T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -63,8 +63,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 1,
-      name: 'Blue T Shirt',
+      id: '1',
+      title: 'Blue T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -72,8 +72,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 3,
-      name: 'Over Size',
+      id: '3',
+      title: 'Over Size',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -81,8 +81,8 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
     ProductModel(
-      id: 4,
-      name: 'Polo T Shirt',
+      id: '4',
+      title: 'Polo T Shirt',
       category: 'Man\'s Cloths',
       oldPrice: 68,
       newPrice: 55,
@@ -90,4 +90,6 @@ class HomeCubit extends Cubit<HomeState> {
       rating: Rating(count: 23, rate: 4),
     ),
   ];
+
 }
+
