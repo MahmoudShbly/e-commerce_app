@@ -3,8 +3,9 @@ import 'package:ecommerce_app/features/home/presentation/views/widgets/highlight
 import 'package:flutter/material.dart';
 
 class FeaturedListView extends StatelessWidget {
-  const FeaturedListView({super.key, required this.products});
+  const FeaturedListView({super.key, required this.products, required this.isNewList});
   final List<ProductModel> products;
+  final bool isNewList;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,7 +16,7 @@ class FeaturedListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return  Padding(
                 padding: EdgeInsets.only(left: 24.0),
-                child: HighlightedProductCard(product: products[index],),
+                child: HighlightedProductCard(product: products[index],isNewList: isNewList,),
               );
             },
           ),

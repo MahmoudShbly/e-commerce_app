@@ -5,7 +5,7 @@ class ProductModel {
     required this.id,
     required this.title,
     required this.category,
-    required this.oldPrice,
+    required this.price,
      this.newPrice,
     required this.imageUrl,
     required this.rating,
@@ -14,17 +14,17 @@ class ProductModel {
   final String id;
   final String title;
   final String category;
-  final double oldPrice;
+  final double price;
   final double? newPrice;
   final String imageUrl;
   final Rating rating;
 
-   Map<String, dynamic> toMap() {
+   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'title': title,
       'category': category,
-      'oldPrice': oldPrice,
+      'oldPrice': price,
       'newPrice': newPrice,
       'imageUrl': imageUrl,
       'rating': rating.toMap(),
@@ -36,8 +36,8 @@ class ProductModel {
       id: documentId,
       title: map['title'] ?? '',
       category: map['category'] ?? '',
-      oldPrice: (map['oldPrice'] ?? 0).toDouble(),
-      newPrice: (map['newPrice']).toDouble(),
+      price: (map['oldPrice'] ?? 0).toDouble(),
+      newPrice:map['newPrice']!=null? (map['newPrice']).toDouble():null,
       imageUrl: map['imageUrl'] ?? '',
       rating: Rating.fromMap(map['rating']??{'count':0,'rate':0}), 
     );

@@ -2,8 +2,10 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSection extends StatelessWidget {
-  const ProductImageSection({super.key, required this.imageUrl});
+  const ProductImageSection({super.key, required this.imageUrl,required this.isNewList,  this.discount,});
   final String imageUrl;
+  final bool isNewList;
+  final int? discount;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -12,7 +14,6 @@ class ProductImageSection extends StatelessWidget {
         SizedBox(
           height: 150,
           width: 150,
-
           child: Image.network(imageUrl, fit: BoxFit.fitHeight),
         ),
         Padding(
@@ -27,12 +28,13 @@ class ProductImageSection extends StatelessWidget {
                 ),
               ],
               borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).primaryColor,
+              color:isNewList? Colors.black: Theme.of(context).primaryColor,
             ),
             child: Padding(
               padding: const EdgeInsets.all(3.0),
               child: Text(
-                '-20% ',
+                isNewList? 'New':
+                '$discount % Off',
                 style: Styles.textStyle12.copyWith(color: Colors.white),
               ),
             ),
@@ -54,7 +56,7 @@ class ProductImageSection extends StatelessWidget {
               ],
               color: Colors.white,
               borderRadius: BorderRadius.circular(50),
-              border: BoxBorder.all(color: Colors.grey.shade200),
+              border: Border.all(color: Colors.grey.shade200),
             ),
             child: IconButton(
               onPressed: () {},

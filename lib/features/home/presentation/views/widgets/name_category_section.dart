@@ -25,6 +25,7 @@ class NameCategorySection extends StatelessWidget {
         Text(
           name,
           style: Styles.textStyle16.copyWith(fontWeight: FontWeight.w600),
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
